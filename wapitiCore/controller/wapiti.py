@@ -638,6 +638,10 @@ class Wapiti:
     def set_timeout(self, timeout: float = 6.0):
         """Set the timeout for the time waiting for a HTTP response"""
         self.crawler_configuration.timeout = timeout
+    
+    def set_delay(self, delay: float = 0):
+        """Set the delay between HTTP request"""
+        self.crawler_configuration.delay = delay
 
     def set_verify_ssl(self, verify: bool = False):
         """Set whether SSL must be verified."""

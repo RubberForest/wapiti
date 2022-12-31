@@ -50,6 +50,7 @@ class RawCredential:
 class CrawlerConfiguration:
     base_request: Request
     timeout: float = 10.0
+    delay: float = 0
     secure: bool = False
     compression: bool = True
     user_agent: str = DEFAULT_UA

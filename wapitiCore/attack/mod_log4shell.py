@@ -244,10 +244,13 @@ class ModuleLog4Shell(Attack):
     async def _verify_dns(self, header_uuid: str) -> bool:
         resolver = dns.resolver.Resolver(configure=False)
         resolver.nameservers = [self._dns_host]
-        answer = resolver.resolve(header_uuid + ".c", "TXT")
+        try:
+            answer = resolver.resolve(header_uuid + ".c", "TXT")
 
-        if answer[0].strings[0].decode("utf-8") == "true":
-            return True
+            if answer[0].strings[0].decode("utf-8") == "true":
+                return True
+        except:
+            pass
         return False
 
     def _get_batch_malicious_headers(self, headers: List[str]) -> Tuple[Dict, Dict]:

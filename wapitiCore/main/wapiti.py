@@ -230,9 +230,13 @@ async def wapiti_main():
         attack_options = {
             "level": args.level,
             "timeout": args.timeout,
-            "tasks": args.tasks,
+            "tasks":  args.tasks,
             "headless": wap.headless_mode,
         }
+
+        wap.set_delay(args.delay)
+        if "delay" in args:
+            attack_options["tasks"] = 1
 
         if "dns_endpoint" in args:
             attack_options["dns_endpoint"] = args.dns_endpoint

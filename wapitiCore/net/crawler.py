@@ -95,10 +95,12 @@ class AsyncCrawler:
             base_request: web.Request,
             client: httpx.AsyncClient,
             timeout: float = 10.0,
+            delay: float = 0,
     ):
         self._base_request = base_request
         self._client = client
         self._timeout = timeout
+        self._delay = delay
 
         self.is_logged_in = False
         self.auth_url: str = self._base_request.url
@@ -162,7 +164,7 @@ class AsyncCrawler:
         )
 
         client.max_redirects = 5
-        return cls(configuration.base_request, client, configuration.timeout)
+        return cls(configuration.base_request, client, configuration.timeout, configuration.delay)
 
     @staticmethod
     def _proxy_url_to_dict(proxy: str) -> Dict[str, str]:
@@ -393,6 +395,7 @@ class AsyncCrawler:
 
         request.set_cookies(self._client.cookies)
         request.set_headers(response.sent_headers)
+        await asyncio.sleep(self._delay)
         return response
 
     async def close(self):

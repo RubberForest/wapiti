@@ -352,6 +352,13 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--delay",
+        type=float, default=0,
+        help="Set delay between requests",
+        metavar="SECONDS"
+    )
+
+    parser.add_argument(
         "-H", "--header",
         action="append",
         default=[],
