@@ -5,7 +5,7 @@ from multiprocessing import cpu_count
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
-VERSION = "3.1.4"
+VERSION = "3.1.5"
 DOC_DIR = "share/doc/wapiti"
 
 
@@ -97,8 +97,8 @@ if a script is vulnerable.""",
         "Operating System :: POSIX",
         "Operating System :: Unix",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Security",
         "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
         "Topic :: Software Development :: Testing"
@@ -111,17 +111,16 @@ if a script is vulnerable.""",
         "markupsafe==2.1.1",
         "six>=1.15.0",
         "browser-cookie3==0.16.2",
-        "cryptography==36.0.2",
-        "httpx[brotli, socks]==0.23.0",
+        "httpx[brotli, socks]==0.23.3",
         "sqlalchemy>=1.4.26",
         "aiocache==0.11.1",
         "aiosqlite==0.17.0",
         "aiohttp==3.8.1",
         "loguru>=0.5.3",
         "dnspython==2.1.0",
-        "httpcore==0.15.0",
-        "mitmproxy==8.0.0",
-        "h11==0.12",
+        "httpcore==0.16.3",
+        "mitmproxy==9.0.0",
+        "h11==0.14",
         "pyasn1==0.4.8",
         "arsenic==21.8",
         "pyasn1==0.4.8",
@@ -130,7 +129,8 @@ if a script is vulnerable.""",
         "NTLM": ["httpx-ntlm"],
         "sslyze": [
             "sslyze==5.0.6",
-            "humanize==4.4.0"
+            "humanize==4.4.0",
+            "pydantic==1.10.2",  # This is to avoid a conflict with sslyze
         ]
     },
     entry_points={
@@ -140,7 +140,7 @@ if a script is vulnerable.""",
         ],
     },
     # https://buildmedia.readthedocs.org/media/pdf/pytest/3.6.0/pytest.pdf
-    tests_require=["pytest>=6.2.2", "respx==0.20.0", "pytest-cov>=2.11.1", "pytest-asyncio==0.20.1"],
+    tests_require=["pytest>=7.1.3", "respx==0.20.1", "pytest-cov>=4.0.0", "pytest-asyncio>=0.20.1"],
     setup_requires=["pytest-runner"],
     cmdclass={"test": PyTest}
 )
